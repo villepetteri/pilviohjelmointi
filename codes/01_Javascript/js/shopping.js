@@ -20,6 +20,7 @@ function calculate() {
     var price = document.getElementById('price').value;
     var tax = document.getElementById('tax').value;
     var discount = document.getElementById('discount').value;
+	var shipping = document.getElementById('shipping').value;
 
 	// Add validation here later!
 
@@ -28,6 +29,7 @@ function calculate() {
 	console.log("total before tax: " + total);
 
 	// Make the tax rate easier to use:
+
 	tax = tax / 100;
 	tax = tax + 1;
 
@@ -36,8 +38,17 @@ function calculate() {
 	console.log("total after tax: " + total);
 
 	// Factor in the discount:
-	total = total - discount;
+	if(total >= 100) {
+		total = total - discount*2;
+	} else {
+		total = total - discount;
+	}
 	console.log("total after discount: " + total);
+
+	// Factor in the shipping costs
+
+	total += Number(shipping);
+	console.log("total after shipping: " + total);
 
 	// Format the total to two decimal places:
 	total = total.toFixed(2);
