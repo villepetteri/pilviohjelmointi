@@ -1,48 +1,96 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<title>Coffee Constructor</title>
-<script>
+	<meta charset="utf-8">
+	<title>Coffee Constructor</title>
+	<script>
 
-function Coffee(roast, grams) {
-	this.roast = roast;
-	this.grams = grams;
-	this.getSize = function() {
-		if (this.grams === 250) {
-			return "small";
-		} else if (this.grams === 375) {
-			return "medium";
-		} else if (this.grams === 500) {
-			return "large";
+		function Coffee(roast, grams) {
+			this.roast = roast;
+			this.grams = grams;
+			this.getSize = function () {
+				if (this.grams === 250) {
+					return "small";
+				} else if (this.grams === 375) {
+					return "medium";
+				} else if (this.grams === 500) {
+					return "large";
+				}
+			};
+			this.order = function () {
+				var msg;
+				switch (this.getSize()) {
+					case "small":
+					case "medium":
+					case "large":
+						msg = "You've ordered a " + this.getSize() + " " + this.roast + " coffee.";
+						break;
+					default:
+						msg = "We don't have a " + this.roast + " in that size!";
+						break;
+				}
+				return msg;
+			};
+			this.sip = function() {
+				console.log("Hmmm, tasty!")
+			};
 		}
-	};
-	this.order = function() {
-		var msg;
-		switch (this.getSize()) {
-			case "small":
-			case "medium":
-			case "large":
-				msg = "You've ordered a " + this.getSize() + " " + this.roast + " coffee.";
-				break;
-			default:
-				msg = "We don't have a " + this.roast + " in that size!";
-				break;
+
+		function Tea(type, grams) {
+			this.type = type;
+			this.grams = grams;
+
+			this.getSteepTime = function () {
+				if (this.grams === 25) {
+					return 2;
+				} else if (this.grams === 50) {
+					return 3;
+				} else if (this.grams === 75) {
+					return 4;
+				}
+			};
+
+			this.order = function () {
+				var msg;
+				switch (this.getSteepTime()) {
+					case 2:
+					case 3:
+					case 4:
+						msg = "You have ordered a " + this.type + " tea. It takes " + this.getSteepTime() +
+							" minutes to steep.";
+						break;
+					default:
+						msg = "We don't have this size of tea available.";
+						break;
+				}
+				return msg;
+			};
+			this.sip = function() {
+				console.log("Hmmm, tasty!")
+			};
 		}
-		return msg;
-	};
-}
 
-var coffee = new Coffee("House Blend", 250);
-console.log(coffee.order());
+		var coffee = new Coffee("House Blend", 250);
+		console.log(coffee.order());
+		coffee.sip();
 
-var darkRoast = new Coffee("Dark Roast", 500);
-console.log(darkRoast.order());
+		var darkRoast = new Coffee("Dark Roast", 500);
+		console.log(darkRoast.order());
+		darkRoast.sip();
 
-var specialBlend = new Coffee("Special Blend", 1000);
-console.log(specialBlend.order());
+		var specialBlend = new Coffee("Special Blend", 1000);
+		console.log(specialBlend.order());
+		specialBlend.sip();
 
-</script>
+		var greenTea = new Tea("Green", 25);
+		console.log(greenTea.order());
+		greenTea.sip();
+
+		var englishTea = new Tea("English Breakfast", 100);
+		console.log(englishTea.order());
+		englishTea.sip();
+
+	</script>
 </head>
 <body>
 </body>
